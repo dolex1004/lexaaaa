@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Girlfriend Day</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pink: #ff6b8b;
+            --pink-dark: #e8436c;
+            --pink-light: #ffb8c6;
+            --white: #fff;
+            --light: #fff5f7;
+            --gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://placehold.co/1920x1080');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: var(--pink-dark);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--pink-dark);
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+
+        .heart {
+            color: var(--pink);
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            background-color: var(--pink);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 107, 139, 0.3);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: var(--pink-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 139, 0.4);
+        }
+
+        .nav-btn {
+            position: fixed;
+            bottom: 30px;
+            z-index: 100;
+        }
+
+        .next-btn {
+            right: 30px;
+        }
+
+        .prev-btn {
+            left: 30px;
+        }
+
+        /* Cover Page */
+        #cover {
+            background: linear-gradient(135deg, var(--pink-light), var(--pink));
+        }
+
+        #cover h1 {
+            font-size: 4.5rem;
+            color: var(--white);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
+        }
+
+        #cover p {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        #cover .heart {
+            font-size: 4rem;
+            animation: pulse 2s infinite;
+            color: var(--gold);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Media Page */
+        #media {
+            background-color: var(--white);
+        }
+
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin-top: 30px;
+        }
+
+        .media-item {
+            flex: 1 1 300px;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .media-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .media-item iframe,
+        .media-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .media-upload {
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 15px;
+            margin-top: 30px;
+            max-width: 400px;
+        }
+
+        .media-upload input {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        /* Message Page */
+        #message {
+            background: linear-gradient(135deg, var(--light), var(--pink-light));
+        }
+
+        .message-box {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 30px auto;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--pink-light);
+            font-size: 1.1rem;
+            margin: 20px 0;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        /* Flower Bouquet Page */
+        #bouquet {
+            background-color: var(--white);
+        }
+
+        .bouquet-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 50px auto;
+        }
+
+        .flower {
+            position: absolute;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .flower:nth-child(1) {
+            top: 50px;
+            left: 30px;
+            animation-delay: 0s;
+            z-index: 1;
+        }
+
+        .flower:nth-child(2) {
+            top: 70px;
+            left: 120px;
+            animation-delay: 0.5s;
+            z-index: 2;
+        }
+
+        .flower:nth-child(3) {
+            top: 120px;
+            left: 60px;
+            animation-delay: 1s;
+            z-index: 3;
+        }
+
+        .flower:nth-child(4) {
+            top: 160px;
+            left: 150px;
+            animation-delay: 1.5s;
+            z-index: 2;
+        }
+
+        .flower:nth-child(5) {
+            top: 200px;
+            left: 80px;
+            animation-delay: 2s;
+            z-index: 1;
+        }
+
+        .flower img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .vase {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(to right, #e0f7fa, #b2ebf2);
+            border-radius: 0 0 50% 50%/0 0 30% 30%;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .bouquet-message {
+            margin-top: 50px;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--pink-dark);
+        }
+
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--pink-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--pink-dark);
+            transform: scale(1.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            #cover h1 {
+                font-size: 3rem;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+
+            .nav-btn {
+                bottom: 20px;
+            }
+
+            .next-btn {
+                right: 20px;
+            }
+
+            .prev-btn {
+                left: 20px;
+            }
+
+            .message-box {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #cover h1 {
+                font-size: 2.5rem;
+            }
+
+            .media-item {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="page" id="cover">
+        <h1>Happy Girlfriend Day Babyy 💕</h1>
+        <div class="heart">❤️</div>
+        <p>Celebrating you - the most amazing girlfriend in the world!</p>
+        <button class="btn next-btn" onclick="goToPage(1)">Let's celebrate!</button>
+    </div>
+
+    <!-- Media Page -->
+    <div class="page" id="media" style="display: none;">
+        <h2>Our Special Moments</h2>
+        <p>Add your favorite pictures and videos of us here</p>
+        <div class="media-container">
+            <div class="media-item">
+                <img src="https://placehold.co/400x300" alt="Couple smiling at each other in a sunny park with trees in background">
+                <div class="media-upload">
+                    <h3>Add Your Picture</h3>
+                    <input type="file" accept="image/*" id="photoUpload">
+                </div>
+            </div>
+            <div class="media-item">
+                <iframe width="400" height="300" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="media-upload">
+                    <h3>Add Your Video</h3>
+                    <input type="text" placeholder="Paste YouTube/Vimeo link" id="videoLink">
+                </div>
+            </div>
+        </div>
+        <button class="btn prev-btn" onclick="goToPage(0)">Go Back</button>
+        <button class="btn next-btn" onclick="goToPage(2)">Next</button>
+    </div>
+
+    <!-- Message Page -->
+    <div class="page" id="message" style="display: none;">
+        <h2>My Heartfelt Message</h2>
+        <p>Write a special romantic message for your girlfriend</p>
+        <div class="message-box">
+            <textarea id="romanticMessage" placeholder="Type your romantic message here...">Hi babyyy, happyyyy girlfriend day to youuu hihi. I know that we seem distant lately because of this situation we are in. But I want you to know na everytime I fall into silence it's your voice I long for, everytime I feel lost it's your presence that I crave, everytime I feel sad it's your comfort I needed. Since the day you entered my life it's 'you' in my every situation. That's why I want you to know na everytime you feel alone I'm always here, you don't need to be afraid of disturbing me cuz that's what I want. I miss your yap, I miss your laugh, I miss your hug, I miss your crazy side hihi, I miss everything about you. I hope you're willing to start with me again. This time I'll show you clearly what my intention for you. I loveeee youuu so muchhh my babyyy🌺🌸.</textarea>
+            <button class="btn" onclick="saveMessage()">Save Message</button>
+        </div>
+        <button class="btn prev-btn" onclick="goToPage(1)">Go Back</button>
+        <button class="btn next-btn" onclick="goToPage(3)">Next</button>
+    </div>
+
+    <!-- Flower Bouquet Page -->
+    <div class="page" id="bouquet" style="display: none;">
+        <h2>For You, My Love</h2>
+        <p>A bouquet as beautiful as you are ❤️</p>
+        <div class="bouquet-container">
+            <div class="flower">
+                <img src="https://placehold.co/80x80/pink/white?text=Rose" alt="Pink rose with dewdrops in morning light">
+            </div>
+            <div class="flower">
+                <img src="https://placehold.co/80x80/white/pink?text=Rose" alt="White rose with delicate petals">
+            </div>
+            <div class="flower">
+                <img src="https://placehold.co/80x80/ff69b4/white?text=Rose" alt="Deep pink rose with velvet texture">
+            </div>
+            <div class="flower">
+                <img src="https://placehold.co/80x80/pink/white?text=Tulip" alt="Pink tulip with fresh green stem">
+            </div>
+            <div class="flower">
+                <img src="https://placehold.co/80x80/white/pink?text=Lily" alt="White lily with golden stamen">
+            </div>
+            <div class="vase"></div>
+        </div>
+        <p class="bouquet-message">Just like these flowers, my love for you keeps growing more beautiful every day</p>
+        <button class="btn prev-btn" onclick="goToPage(2)">Go Back</button>
+        <button class="btn" onclick="goToPage(0)">Start Again</button>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="dot active" onclick="goToPage(0)"></div>
+        <div class="dot" onclick="goToPage(1)"></div>
+        <div class="dot" onclick="goToPage(2)"></div>
+        <div class="dot" onclick="goToPage(3)"></div>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const dots = document.querySelectorAll('.dot');
+        let currentPage = 0;
+
+        function goToPage(pageIndex) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+
+            // Show selected page
+            pages[pageIndex].style.display = 'flex';
+            currentPage = pageIndex;
+
+            // Update navigation dots
+            dots.forEach((dot, index) => {
+                if (index === pageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function saveMessage() {
+            const message = document.getElementById('romanticMessage').value;
+            localStorage.setItem('romanticMessage', message);
+            alert('Message saved! 💌');
+        }
+
+        // Handle photo upload
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.querySelector('.media-item img');
+                    img.src = event.target.result;
+                    img.alt = 'Uploaded photo of you and your girlfriend';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle video link
+        document.getElementById('videoLink').addEventListener('change', function(e) {
+            const videoUrl = e.target.value;
+            if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') || videoUrl.includes('vimeo.com')) {
+                document.querySelector('iframe').src = videoUrl;
+            }
+        });
+
+        // Load saved message if exists
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedMessage = localStorage.getItem('romanticMessage');
+            if (savedMessage) {
+                document.getElementById('romanticMessage').value = savedMessage;
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Girlfriend Day</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --pink: #ff6b8b;
+            --pink-dark: #e8436c;
+   
